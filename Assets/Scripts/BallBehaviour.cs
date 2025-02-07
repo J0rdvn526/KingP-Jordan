@@ -23,23 +23,33 @@ public class BallBehaviour : MonoBehaviour {
     public float timeLaunchStart;
     public float timeLastLaunch;
 
+    Rigidbody2D body;
+    public bool rerouting;
 
 
 
-// Start is called once before the first execution of Update after the MonoBehaviour is created
-void Start() {
-        // secondsToMaxSpeed = 30;
-        // minSpeed = 0.5f;
-        // maxSpeed = 1.0f;
+
+
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start() {
+        secondsToMaxSpeed = 30;
+        minSpeed = 0.5f;
+        maxSpeed = 1.0f;
         targetPosition = getRandomPosition();
     }
 
     // Update is called once per frame
-    void Update() {
-        // Vector2 currentPosition = gameObject.GetComponent<Transform>().position;
+    void Update()
+    {
+
+    }
+
+    void FixedUpdate()
+    {
+        Vector2 currentPosition = gameObject.GetComponent<Transform>().position;
         if (onCooldown() == false)
         {
-            if (launching)
+            if (launching == true)
             {
                 float currentLaunchTime = Time.time - timeLaunchStart;
                 if (currentLaunchTime < launchDuration)
@@ -53,7 +63,7 @@ void Start() {
             }
         }
 
-        Vector2 currentPosition = gameObject.GetComponent<Transform>().position;
+        // Vector2 currentPosition = gameObject.GetComponent<Transform>().position;
         float distance = Vector2.Distance((Vector2)transform.position, targetPosition);
         if (distance > 0.1f)
         {
@@ -61,7 +71,11 @@ void Start() {
             float currentSpeed;
             if (launching == true)
             {
-                startCooldown();
+                float timeLaunching = Time.time - timeLastLaunch;
+                if (timeLaunching > launchDuration)
+                {
+                    startCooldown();
+                }
                 currentSpeed = Mathf.Lerp(minLaunchSpeed, maxLaunchSpeed, difficulty);
             }
             else
@@ -70,66 +84,98 @@ void Start() {
             }
             currentSpeed = currentSpeed * Time.deltaTime;
             Vector2 newPosition = Vector2.MoveTowards(currentPosition, targetPosition, currentSpeed);
-            transform.position = newPosition;
+            body.MovePosition(newPosition);
         }
 
         else
         {
             if (launching == true)
             {
-                launching = false;
+                // launching = false;
                 startCooldown();
             }
             targetPosition = getRandomPosition();
         }
-
-            float timeLaunching = Time.time - timeLastLaunch;
-            if (timeLaunching > launchDuration) {
-                startCooldown();
-            }
-            else {
-                launch();
-            }
-        }
-    
-    Vector2 getRandomPosition()
-    {
-        float randomX = Random.Range(minX, maxX);
-        float randomY = Random.Range(minY, maxY);
-        Debug.Log("rx: " + randomX + "ry: " + randomY);
-        targetPosition = new Vector2(randomX, randomY);
-        return targetPosition;
     }
 
-    public float getDifficultyPercentage() {
-        float difficulty = Mathf.Clamp01(Time.timeSinceLevelLoad / secondsToMaxSpeed);
-        return difficulty;
-    }
 
-    public void launch() {
-        targetPosition = target.transform.position;
 
-        if(launching == false)
+        Vector2 getRandomPosition()
         {
-            timeLaunchStart = Time.time;
-            launching = true;
-        }
-    }
-
-    public bool onCooldown() {
-        bool result = false;
-
-        float timeSinceLastLaunch = Time.time - timeLastLaunch;
-
-        if(timeSinceLastLaunch < cooldown) {
-            result = true;
+            float randomX = Random.Range(minX, maxX);
+            float randomY = Random.Range(minY, maxY);
+            Debug.Log("rx: " + randomX + "ry: " + randomY);
+            targetPosition = new Vector2(randomX, randomY);
+            return targetPosition;
         }
 
-        return result;
-    }
+        public float getDifficultyPercentage() {
+            float difficulty = Mathf.Clamp01(Time.timeSinceLevelLoad / secondsToMaxSpeed);
+            return difficulty;
+        }
 
-    public void startCooldown() {
-        launching = false;
-        timeLastLaunch = Time.time;
+        public void launch() {
+            Rigidbody2D targetBody = target.GetComponent<Rigidbody2D>();
+            targetPosition = targetBody.position;
+
+            if (launching == false)
+            {
+                timeLaunchStart = Time.time;
+                launching = true;
+            }
+        }
+
+        public bool onCooldown() {
+            bool result = false;
+
+            float timeSinceLastLaunch = Time.time - timeLastLaunch;
+
+            if (timeSinceLastLaunch < cooldown) {
+                result = true;
+            }
+
+            return result;
+        }
+
+        public void startCooldown() {
+            launching = false;
+            timeLastLaunch = Time.time;
+        }
+
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            Debug.Log(this + "Collided with: " + collision.gameObject.name);
+            if (collision.gameObject.tag == "Wall") {
+                targetPosition = getRandomPosition();
+            }
+            if (collision.gameObject.tag == "Ball") {
+                reroute(collision);
+            }
+        }
+
+        public void initialPosition()
+        {
+            body = GetComponent<Rigidbody2D>();
+            body.position = getRandomPosition();
+            targetPosition = getRandomPosition();
+            launching = false;
+            rerouting = true;
+        }
+
+        public void reroute(Collision2D collision)
+        {
+            GameObject otherBall = collision.gameObject;
+            if (rerouting == true)
+            {
+                Rigidbody2D ballBody = otherBall.GetComponent<Rigidbody2D>();
+                Vector2 contact = collision.GetContact(0).normal;
+                targetPosition = Vector2.Reflect(targetPosition, contact).normalized;
+                launching = false;
+                float seperationDistance = 0.1f;
+                ballBody.position += contact * seperationDistance;
+            } else
+            {
+                rerouting = true;
+            }
+        }
     }
-}
