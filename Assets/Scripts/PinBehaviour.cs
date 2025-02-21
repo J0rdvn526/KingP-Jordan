@@ -5,8 +5,8 @@ public class PinBehaviour : MonoBehaviour
 {
     public float speed;
     public float timeDashStart;
-    public float dashSpeed = 4.0f;
-    public float baseSpeed = 0.5f;
+    public float dashSpeed = 1.0f;
+    public float baseSpeed = 0.1f;
     public float dashDuration = 0.3f;
     public bool dashing;
 
@@ -30,7 +30,7 @@ public class PinBehaviour : MonoBehaviour
         dash();
 
         mousePosG = cam.ScreenToWorldPoint(Input.mousePosition);
-        newPosition = Vector2.MoveTowards(transform.position, mousePosG, baseSpeed * Time.fixedDeltaTime);
+        newPosition = Vector2.MoveTowards(transform.position, mousePosG, speed * Time.fixedDeltaTime);
         transform.position = newPosition;
         
     }
