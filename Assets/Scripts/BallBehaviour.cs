@@ -8,15 +8,13 @@ public class BallBehaviour : MonoBehaviour {
     public float maxY = 4.42f;
     public float minSpeed;
     public float maxSpeed;
-    Vector2 targetPosition;
+    public Vector2 targetPosition;
 
     public int secondsToMaxSpeed;
 
     public GameObject target;
     public float minLaunchSpeed;
     public float maxLaunchSpeed;
-    //public float minTimeToLaunch;
-    //public float maxTimeToLaunch;
     public float cooldown;
     public bool launching;
     public float launchDuration;
@@ -35,11 +33,13 @@ public class BallBehaviour : MonoBehaviour {
         //secondsToMaxSpeed = 30;
         //minSpeed = 0.5f;
         //maxSpeed = 1.0f;
-        targetPosition = getRandomPosition();
+        initialPosition();
     }
 
     void FixedUpdate()
     {
+        body = GetComponent<Rigidbody2D>();
+        Vector2 currentPosition = body.position;
         if (onCooldown() == false) {
             if (launching == true) {
                 float currentLaunchTime = Time.time - timeLaunchStart;
@@ -52,13 +52,13 @@ public class BallBehaviour : MonoBehaviour {
             }
         }
 
-        Vector2 currentPosition = gameObject.GetComponent<Transform>().position;
         float distance = Vector2.Distance((Vector2)transform.position, targetPosition);
+        // float distance = Vector2.Distance(currentPosition, targetPosition);
         if (distance > 0.1f) {
             float difficulty = getDifficultyPercentage();
             float currentSpeed;
             if (launching == true) {
-                float timeLaunching = Time.time - timeLastLaunch;
+                float timeLaunching = Time.time - timeLaunchStart;
                 if (timeLaunching > launchDuration) {
                     startCooldown();
                 }
@@ -117,12 +117,21 @@ public class BallBehaviour : MonoBehaviour {
         }
 
         private void OnCollisionEnter2D(Collision2D collision) {
-            Debug.Log(this + "Collided with: " + collision.gameObject.name);
-            if (collision.gameObject.tag == "Wall") {
+            string collided = collision.gameObject.tag;
+            Debug.Log(this + "Collided with: " + collision.gameObject.tag);
+            if (collided == "Wall") {
                 targetPosition = getRandomPosition();
             }
-            if (collision.gameObject.tag == "Ball") {
+            if (collided == "Ball") {
                 reroute(collision);
+            }
+        }
+
+        private void OnCollisionStay2D(Collision2D collision) {
+            if (collision.gameObject.tag == "Wall") {
+                Debug.Log(this + " still collided with " + collision.gameObject.tag);
+                targetPosition = getRandomPosition();
+
             }
         }
 
@@ -146,5 +155,16 @@ public class BallBehaviour : MonoBehaviour {
             } else {
                 rerouting = true;
             }
+        }
+
+        public void setBounds(float miX, float maX, float miY, float maY) {
+            minX = miX;
+            maxX = maX;
+            minY = miY;
+            maxY = maY;
+        }
+
+        public void setTarget(GameObject pin) {
+            target = pin;
         }
 }

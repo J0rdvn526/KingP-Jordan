@@ -11,11 +11,12 @@ GameObject:
   - component: {fileID: 1199370159119122118}
   - component: {fileID: 791657121359516701}
   - component: {fileID: 2437614074206568281}
+  - component: {fileID: 2189242702759430353}
   - component: {fileID: 4214482166116641986}
   - component: {fileID: 7450521314100839403}
   m_Layer: 0
   m_Name: Ball
-  m_TagString: Untagged
+  m_TagString: Ball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5.71, y: 1.23, z: -0.1}
-  m_LocalScale: {x: 0.13, y: 0.13, z: 0.13}
+  m_LocalScale: {x: 0.09, y: 0.09, z: 0.09}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -107,17 +108,46 @@ MonoBehaviour:
   maxX: 8.62
   maxY: 4.42
   minSpeed: 1
-  maxSpeed: 2
+  maxSpeed: 3
+  targetPosition: {x: 0, y: 0}
   secondsToMaxSpeed: 30
   target: {fileID: 3269912597927057839, guid: efb947f8933394565b4a25541b1cbd69, type: 3}
   minLaunchSpeed: 1
-  maxLaunchSpeed: 3
+  maxLaunchSpeed: 2
   cooldown: 10
   launching: 0
-  launchDuration: 4
+  launchDuration: 5
   timeLaunchStart: 0
   timeLastLaunch: 0
   rerouting: 0
+--- !u!114 &2189242702759430353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7532362909769406487}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78a0b387951964924a71f1a28d612cfa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minX: -8.048
+  minY: -4.16
+  maxX: 7.8
+  maxY: 4.34
+  minSpeed: 0
+  maxSpeed: 0
+  targetPosition: {x: 0, y: 0}
+  target: {fileID: 3269912597927057839, guid: efb947f8933394565b4a25541b1cbd69, type: 3}
+  launching: 0
+  timeLastLaunch: 0
+  launchDuration: 0
+  timeLaunchStart: 0
+  minLaunchSpeed: 0
+  maxLaunchSpeed: 0
+  cooldown: 0
+  secondsToMaxSpeed: 0
 --- !u!58 &4214482166116641986
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -179,5 +209,5 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 1
-  m_Constraints: 0
+  m_CollisionDetection: 0
+  m_Constraints: 4

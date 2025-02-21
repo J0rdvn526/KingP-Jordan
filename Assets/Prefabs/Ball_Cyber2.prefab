@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &8152699959870582921
+--- !u!1001 &4831258540955200305
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -8,14 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 154941919056082455, guid: 9c4c22ddc9dc34782985ca7ebb1bc2a9, type: 3}
-      propertyPath: target
-      value: 
-      objectReference: {fileID: 3269912597927057839, guid: efb947f8933394565b4a25541b1cbd69, type: 3}
     - target: {fileID: 791657121359516701, guid: 9c4c22ddc9dc34782985ca7ebb1bc2a9, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -8487396936026994761, guid: b5eb1067185b24b4abcd68221fe23a96, type: 3}
+      objectReference: {fileID: 1338603833586857640, guid: 58312e0edce3c4ecf979954c27cc03e2, type: 3}
     - target: {fileID: 1199370159119122118, guid: 9c4c22ddc9dc34782985ca7ebb1bc2a9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -26,7 +22,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1199370159119122118, guid: 9c4c22ddc9dc34782985ca7ebb1bc2a9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.1
       objectReference: {fileID: 0}
     - target: {fileID: 1199370159119122118, guid: 9c4c22ddc9dc34782985ca7ebb1bc2a9, type: 3}
       propertyPath: m_LocalRotation.w
@@ -56,57 +52,24 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4214482166116641986, guid: 9c4c22ddc9dc34782985ca7ebb1bc2a9, type: 3}
+      propertyPath: m_Radius
+      value: 3.7259572
+      objectReference: {fileID: 0}
+    - target: {fileID: 4214482166116641986, guid: 9c4c22ddc9dc34782985ca7ebb1bc2a9, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.027891994
+      objectReference: {fileID: 0}
+    - target: {fileID: 4214482166116641986, guid: 9c4c22ddc9dc34782985ca7ebb1bc2a9, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.023445029
+      objectReference: {fileID: 0}
     - target: {fileID: 7532362909769406487, guid: 9c4c22ddc9dc34782985ca7ebb1bc2a9, type: 3}
       propertyPath: m_Name
-      value: Ball2
+      value: Ball_Cyber2
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 4214482166116641986, guid: 9c4c22ddc9dc34782985ca7ebb1bc2a9, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7532362909769406487, guid: 9c4c22ddc9dc34782985ca7ebb1bc2a9, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: -3948688193956707776}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c4c22ddc9dc34782985ca7ebb1bc2a9, type: 3}
---- !u!1 &1849960490156910750 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7532362909769406487, guid: 9c4c22ddc9dc34782985ca7ebb1bc2a9, type: 3}
-  m_PrefabInstance: {fileID: 8152699959870582921}
-  m_PrefabAsset: {fileID: 0}
---- !u!58 &-3948688193956707776
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1849960490156910750}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Radius: 4.07

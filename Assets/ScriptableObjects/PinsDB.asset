@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a3dfeb99a44b405da6dc4602952d919, type: 3}
+  m_Name: PinsDB
+  m_EditorClassIdentifier: 
+  pins:
+  - name: Normal
+    prefab: {fileID: 3269912597927057839, guid: efb947f8933394565b4a25541b1cbd69, type: 3}
+  - name: Illuminati
+    prefab: {fileID: 4473387461562495117, guid: 15c94131ee9c644c69fbfcb4df8a03e3, type: 3}
+  - name: Cardi
+    prefab: {fileID: 582233257743509115, guid: b42a5d9e76b50473489c7d8d91329ad0, type: 3}
+  - name: Gusteau
+    prefab: {fileID: 245580319714141015, guid: 8965472704aa2482d8b199d202b19a67, type: 3}
+  - name: Chanel
+    prefab: {fileID: 3039112717385035274, guid: 8e118c3b7b5bf458fa5b6f558f9501d7, type: 3}
+  - name: Cyber
+    prefab: {fileID: 6415194504991628407, guid: 5da923b5de88741878ff089a5e08a57c, type: 3}
+  - name: Dawg
+    prefab: {fileID: 9133887530776305516, guid: fc37f9319585041828f18d6175c8f6b1, type: 3}
+  - name: Fwog
+    prefab: {fileID: 3606443441465384280, guid: 981acfddd255a402cb154b24fde81636, type: 3}

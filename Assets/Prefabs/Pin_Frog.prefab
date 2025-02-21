@@ -1250,7 +1250,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3269912597927057839, guid: efb947f8933394565b4a25541b1cbd69, type: 3}
       propertyPath: m_Name
-      value: Frog_Pin
+      value: Pin_Frog
       objectReference: {fileID: 0}
     - target: {fileID: 8404863777749631310, guid: efb947f8933394565b4a25541b1cbd69, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1262,7 +1262,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8404863777749631310, guid: efb947f8933394565b4a25541b1cbd69, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.1
       objectReference: {fileID: 0}
     - target: {fileID: 8404863777749631310, guid: efb947f8933394565b4a25541b1cbd69, type: 3}
       propertyPath: m_LocalRotation.w

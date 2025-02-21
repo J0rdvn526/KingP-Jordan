@@ -5,8 +5,8 @@ public class PinBehaviour : MonoBehaviour
 {
     public float speed;
     public float timeDashStart;
-    public float dashSpeed = 5.0f;
-    public float baseSpeed = 2.0f;
+    public float dashSpeed = 4.0f;
+    public float baseSpeed = 0.5f;
     public float dashDuration = 0.3f;
     public bool dashing;
 
