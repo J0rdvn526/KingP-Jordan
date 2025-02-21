@@ -107,8 +107,8 @@ MonoBehaviour:
   minY: -4.43
   maxX: 8.62
   maxY: 4.42
-  minSpeed: 1
-  maxSpeed: 3
+  minSpeed: 3
+  maxSpeed: 5
   targetPosition: {x: 0, y: 0}
   secondsToMaxSpeed: 30
   target: {fileID: 3269912597927057839, guid: efb947f8933394565b4a25541b1cbd69, type: 3}

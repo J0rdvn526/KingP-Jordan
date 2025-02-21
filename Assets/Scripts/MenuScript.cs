@@ -1,23 +1,32 @@
 using UnityEngine;
+using System.Collections;
 using UnityEngine.SceneManagement;
 
 public class MenusBehaviour : MonoBehaviour {
+
+    private IEnumerator WaitForSoundAndTransition(string sceneName) {
+        AudioSource source = GetComponent<AudioSource>();
+        source.Play();
+        yield return new WaitForSeconds(source.clip.length); // wait for sound to finish
+        SceneManager.LoadScene(sceneName); // Load next scene
+    }
+    
     public void gotoGame() {
-        SceneManager.LoadScene("MainGame");
+        StartCoroutine(WaitForSoundAndTransition("MainGame"));
     }
 
     public void gotoMenu()
     {
-        SceneManager.LoadScene("MainMenu");
+        StartCoroutine(WaitForSoundAndTransition("MainMenu"));
     }
 
     public void gotoCharacterSelect()
     {
-        SceneManager.LoadScene("CharacterSelect");
+        StartCoroutine(WaitForSoundAndTransition("Charactermenu"));
     }
 
     public void gotoGameOver()
     {
-        SceneManager.LoadScene("GameOver");
+        StartCoroutine(WaitForSoundAndTransition("GameOver"));
     }
 }

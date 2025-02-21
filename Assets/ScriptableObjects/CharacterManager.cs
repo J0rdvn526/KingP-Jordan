@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using System.Collections;
 
 public class CharacterManager : MonoBehaviour
 {
@@ -14,34 +15,38 @@ public class CharacterManager : MonoBehaviour
         updateCharacter();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     void updateCharacter() {
     Pin current = pinsDB.getPin(selection);
     sprite.sprite = current.prefab.GetComponent<SpriteRenderer>().sprite;
     nameLabel.SetText(current.name);
     }
 
+    private IEnumerator WaitForSoundAndTransition() {
+    AudioSource source = GetComponentInChildren<AudioSource>();
+    source.Play();
+    yield return new WaitForSeconds(source.clip.length); // wait for sound to finish
+    }
+
     public void next() {
+        StartCoroutine(WaitForSoundAndTransition());
         int numberPins = pinsDB.getCount();
         if (selection < numberPins - 1) {
             selection = selection + 1;
         } else {
             selection = 0;
         }
+        
         updateCharacter();
     }
 
     public void previous() {
+        StartCoroutine(WaitForSoundAndTransition());
         if (selection > 0) {
             selection = selection - 1;
         } else {
             selection = pinsDB.getCount() - 1;
         }
+        
         updateCharacter();
     }
 }

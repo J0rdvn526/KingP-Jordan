@@ -1,12 +1,13 @@
 // Written by Jordan Jefferis
+using System.Collections;
 using UnityEngine;
 
 public class PinBehaviour : MonoBehaviour
 {
     public float speed;
     public float timeDashStart;
-    public float dashSpeed = 1.0f;
-    public float baseSpeed = 0.1f;
+    public float dashSpeed = 0.5f;
+    public float baseSpeed = 0.05f;
     public float dashDuration = 0.3f;
     public bool dashing;
 
@@ -19,10 +20,14 @@ public class PinBehaviour : MonoBehaviour
     public Vector3 mousePosG;
     Camera cam;
 
+    // Audio Sources
+    public AudioSource[] audioSources;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start() {
         cam = Camera.main;
         dashing = false;
+        audioSources = GetComponents<AudioSource>();
     }
 
     // Update is called once per frame
@@ -39,9 +44,16 @@ public class PinBehaviour : MonoBehaviour
         string collided = collision.gameObject.tag;
         Debug.Log(this + "Collided with: " + collision.gameObject.name);
         if (collided == "Ball" || collided == "Wall") {
-            UnityEngine.SceneManagement.SceneManager.LoadScene("GameOver");
+            Debug.Log("Game Over");
+            StartCoroutine(WaitForSoundAndTransistion());
         }
     }
+        private IEnumerator WaitForSoundAndTransistion() {
+            // AudioSource source = GetComponenetInChildren<AudioSource>();
+            audioSources[0].Play();
+            yield return new WaitForSeconds(audioSources[0].clip.length);
+            UnityEngine.SceneManagement.SceneManager.LoadScene("GameOver");
+        }
 
     public void dash() {
         if (dashing == true) {
@@ -63,6 +75,10 @@ public class PinBehaviour : MonoBehaviour
                 dashing = true;
                 speed = dashSpeed;
                 timeDashStart = Time.time;
+                if (audioSources[1].isPlaying) {
+                    audioSources[1].Stop();
+                }
+                audioSources[1].Play();
             }
         }
     }
