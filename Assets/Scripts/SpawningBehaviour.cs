@@ -47,6 +47,6 @@ public class NewMonoBehaviourScript : MonoBehaviour {
 
     void spawnPin() {
         targetObject = Instantiate(pinsDB.getPin(CharacterManager.selection).prefab,
-         new Vector3(0.0f, 0.0f, 0.0f), Quaternion.identity);
+         new Vector3(0.0f, 0.0f, -0.1f), Quaternion.identity);
     }
 }

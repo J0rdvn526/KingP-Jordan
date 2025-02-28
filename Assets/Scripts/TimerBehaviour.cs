@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+// using UnityEngine.SceneManagement;
 
 public class TimerBehaviour : MonoBehaviour
 {
@@ -19,15 +20,18 @@ public class TimerBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timer = Time.time;
+        // gameObject gameScene = SceneManager.sceneLoaded += OnSceneLoaded;
+        // if (gameScene.name == "MainGame") {
 
-        int minutes = (int)timer / 60;
-        int seconds = (int)timer % 60;
+            timer = Time.time;
 
-        string message = string.Format("<color=white>Time: <color=#4EFCEB>{00:00}<color=white>:<color=#4EFCEB>{1:00}", minutes, seconds);
+            int minutes = (int)timer / 60;
+            int seconds = (int)timer % 60;
 
-        textField.text = message;
+            string message = string.Format("<color=white>Time: <color=#4EFCEB>{00:00}<color=white>:<color=#4EFCEB>{1:00}", minutes, seconds);
 
+            textField.text = message;
+        // }
 
 
         // Debug.Log(timer);

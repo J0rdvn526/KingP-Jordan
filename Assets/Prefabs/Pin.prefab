@@ -106,13 +106,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0
   timeDashStart: 0
-  dashSpeed: 2
-  baseSpeed: 0.5
+  dashSpeed: 0.8
+  baseSpeed: 0.2
   dashDuration: 0.3
   dashing: 0
   endLastDash: 0
   newPosition: {x: 0, y: 0}
   mousePosG: {x: 0, y: 0, z: 0}
+  audioSources: []
 --- !u!50 &6779572141670653308
 Rigidbody2D:
   serializedVersion: 5

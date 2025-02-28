@@ -86,6 +86,19 @@ public class BallBehaviour : MonoBehaviour {
             return targetPosition;
         }
 
+            /*
+            Vector2 getRandomPositionInitial() {
+            float randomX = Random.Range(minX, maxX);
+            float randomY = Random.Range(minY, maxY);
+            if (randomX == && randomY ==) {
+                getRandomPosition();
+            } else {
+            targetPosition = new Vector2(randomX, randomY);
+            return targetPosition;
+            }
+        }
+        */
+
         public float getDifficultyPercentage() {
             float difficulty = Mathf.Clamp01(Time.timeSinceLevelLoad / secondsToMaxSpeed);
             return difficulty;
